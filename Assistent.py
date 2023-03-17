@@ -1,19 +1,18 @@
-# Импортируем необходимые модули
+# Import necessary modules
 import openai
 import telebot
 import config
 
-
-# Устанавливаем ключ для использования API OpenAI
+# Set API key to use OpenAI API
 openai.api_key = config.open_ai_key
 
-# Создаём экземпляр телеграм-бота
+# Create an instance of the Telegram bot
 bot = telebot.TeleBot(config.tel_bot_api)
 
-# Создаём обработчик для всех получаемых сообщений
+# Create a handler for all received messages
 @bot.message_handler(func=lambda _: True)
 def handle_message(message):
-    # Отправляем запрос к модели GPT-3 OpenAI с параметрами
+    # Send a request to the OpenAI GPT-3 model with parameters
     response = openai.Completion.create(
         model="gpt-3.5-turbo",
         prompt=message.text,
@@ -22,8 +21,9 @@ def handle_message(message):
         top_p=1,
         frequency_penalty=0,
         presence_penalty=0)
-    # Отвечаем пользователю текстом, полученным от модели
+    
+    # Respond to the user with the text obtained from the model
     bot.send_message(chat_id=message.from_user.id, text=response['choices'][0]['text'])
 
-# Запускаем бесконечный цикл опроса новых сообщений с временной задержкой (в секундах)
+# Start an infinite loop to poll for new messages with a timeout (in seconds)
 bot.infinity_polling(timeout=20, long_polling_timeout=10)
