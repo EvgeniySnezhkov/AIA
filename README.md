@@ -1,4 +1,6 @@
 # AIA
+AI Assistent
+
 Adoptation of ChatGPT via telegram bot.
 
 
