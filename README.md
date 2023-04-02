@@ -1,7 +1,7 @@
 # AIA
 AI Assistent
 
-Adoptation of ChatGPT via telegram bot.
+Telegram bot wrapper of ChatGPT.
 
 
 
