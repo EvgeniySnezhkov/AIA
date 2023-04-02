@@ -1,7 +1,7 @@
 # AIA
 AI Assistent
 
-Telegram bot wrapper of ChatGPT.
+A Telegram bot wrapper of ChatGPT.
 
 
 
